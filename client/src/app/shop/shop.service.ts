@@ -21,6 +21,7 @@ export class ShopService {
     if (shopParams && shopParams.sort) params = params.append('sort', shopParams.sort);
     if (shopParams && shopParams.pageNumber) params = params.append('pageIndex', shopParams.pageNumber.toString());
     if (shopParams && shopParams.pageSize) params = params.append('pageSize', shopParams.pageSize.toString());
+    if (shopParams && shopParams.search) params = params.append('search', shopParams.search.toString());
 
     return this.http.get<IPagination<IProduct>>(this.baseUrl + 'products', { params });
   }
