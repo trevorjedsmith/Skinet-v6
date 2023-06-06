@@ -1,0 +1,10 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li [attr.disabled]="this.pageNumber == 1" *ngIf="totalPages && totalPages.length > 1" (click)="previous()"
+            class="page-item"><a class="page-link">Previous</a></li>
+        <li [class.active]="page == this.pageNumber" (click)="setPage(page)" *ngFor="let page of totalPages"
+            class="page-item"><a class="page-link">{{page}}</a></li>
+        <li [attr.disabled]="this.pageNumber === this.totalPages.length" *ngIf="totalPages && totalPages.length > 1"
+            (click)="next()" class="page-item"><a class="page-link">Next</a></li>
+    </ul>
+</nav>
