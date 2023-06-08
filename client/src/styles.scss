@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+// this style did not work at a component style level so making this global
+label.xng-breadcrumb-trail {
+    color: orange;
+}

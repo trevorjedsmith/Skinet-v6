@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '', component: ShopComponent
   },
   {
-    path: ':id', component: ShopDetailsComponent
+    path: ':id', component: ShopDetailsComponent, data:{breadcrumb: { alias: 'productDetails' }}
   }
 ];
 
