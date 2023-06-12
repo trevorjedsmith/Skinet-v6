@@ -10,9 +10,9 @@
     </nav>
 
     <div class="d-flex align-items-center">
-        <a class="position-relative">
+        <a routerLink="/basket" class="position-relative">
             <i class="fa fa-shopping-cart me-5 fa-2x text-dark"></i>
-            <div class="cart-no">5</div>
+            <div class="cart-no" *ngIf="(basket$ | async) as basket">{{ getCount(basket.items) }}</div>
         </a>
         <button type="button" class="btn btn-outline-primary me-2">Login</button>
         <button type="button" class="btn btn-outline-primary me-2">Sign-up</button>
