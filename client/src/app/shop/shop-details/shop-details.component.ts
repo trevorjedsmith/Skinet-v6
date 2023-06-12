@@ -31,6 +31,7 @@ export class ShopDetailsComponent implements OnInit {
       this.shopService.getProduct(+this.activatedRoute.snapshot.paramMap.get('id')).subscribe((product: IProduct) => {
         this.product = product;
         this.breadcrumbService.set('@productDetails', this.product.name);
+        // easy way to unsubscribe is to pipe and take 1
         this.basketService.basketSource$.pipe(take(1)).subscribe((basket: IBasket) => {
           const item = basket?.items.find(x => x.id == id);
           if (item) {

@@ -13,7 +13,7 @@
                 <i (click)="decrementQuantity()" class="fa fa-minus-circle text-warning me-2" style="cursor: pointer; font-size: 2em;"></i>
                 <span class="font-weight-bold me-2" style="font-size: 1.5em;">{{ quantity }}</span>
                 <i (click)="incrementQuantity()" class="fa fa-plus-circle text-warning me-2" style="cursor: pointer; font-size: 2em;"></i>
-                <button (click)="updateBasket()" [disabled]="quantity === quantityInBasket" class="btn btn-outline-secondary ms-4">Add to cart</button>
+                <button (click)="updateBasket()" [disabled]="quantity === quantityInBasket" class="btn btn-outline-secondary ms-4">{{ buttonText }}</button>
             </div>
             <div class="row mt-4">
                 <h3>Description</h3>
