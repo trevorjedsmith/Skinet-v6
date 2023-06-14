@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
   getAndSetToken() {
     const token = localStorage.getItem('token');
-    if(token) this.accountService.loadCurrentUser(token).subscribe();
+    this.accountService.loadCurrentUser(token).subscribe();
   }
 
   getAndSetBasket() {

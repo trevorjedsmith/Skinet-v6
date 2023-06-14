@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="d-grid">
-                <button class="btn btn-lg btn-primary mt-3">Sign in</button>
+                <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary mt-3">Sign in</button>
             </div>
         </form>
     </div>
