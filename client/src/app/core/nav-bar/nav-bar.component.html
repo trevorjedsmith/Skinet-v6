@@ -19,7 +19,20 @@
             <a routerLink="/account/register" type="button" class="btn btn-outline-primary me-2">Sign-up</a>
         </ng-container>
         <ng-container *ngIf="(user$ | async) as user">
-            <p>Welcome {{ user.displayName }}</p>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome {{ user.displayName }}
+              </button>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/basket" class="dropdown-item" style="cursor: pointer;">
+                    <i class="fa fa-shopping-cart me-3"></i> View basket</a></li>
+                <li><a routerLink="/orders" class="dropdown-item" style="cursor: pointer;">
+                    <i class="fa fa-history me-3"></i> View orders</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a (click)="logout()" class="dropdown-item" style="cursor: pointer;">
+                    <i class="fa fa-sign-out me-3"></i> Logout</a></li>
+              </ul>
+            </div>
         </ng-container>
     </div>
 </header>

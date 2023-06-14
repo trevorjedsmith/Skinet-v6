@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [OrderTotalsComponent],
   imports: [
-    CommonModule,
-    ReactiveFormsModule
+    CommonModule
   ],
-  exports: [OrderTotalsComponent, ReactiveFormsModule]
+  exports: [OrderTotalsComponent]
 })
 export class SharedModule { }

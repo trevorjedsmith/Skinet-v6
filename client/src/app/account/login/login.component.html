@@ -3,12 +3,24 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="text-center mb-4">
                 <div class="form-floating mb-3">
-                    <input formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input formControlName="email" type="email" class="form-control" id="email"
+                        [class.is-invalid]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
+                    <div class="invalid-feedback" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.errors['required'] === true">
+                        Email is required
+                    </div>
+                    <div class="invalid-feedback" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.errors['email'] === true">
+                        Email is invalid
+                    </div>
                 </div>
                 <div class="form-floating">
-                    <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input formControlName="password" type="password" class="form-control"
+                    [class.is-invalid]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" placeholder="name@example.com"
+                        id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
+                    <div class="invalid-feedback" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.errors['required'] === true">
+                        Password is required
+                    </div>
                 </div>
             </div>
             <div class="d-grid">
