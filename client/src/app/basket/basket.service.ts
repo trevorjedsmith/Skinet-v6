@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Basket, IBasket, IBasketItem, IBasketTotals } from '../shared/models/basket';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from '../shared/models/product';
+import { IDeliveryMethod } from '../shared/models/deliveryMethod';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,14 @@ export class BasketService {
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
   basketTotalSource$ = this.basketTotalSource.asObservable();
 
+  shipping = 0;
+
   constructor(private http: HttpClient) { }
+
+  setShippingPrice(dm: IDeliveryMethod) {
+    this.shipping = dm.price;
+    this.calculateTotals();
+  }
 
   getBasket(id: string) {
     return this.http.get<IBasket>(this.baseUrl + 'basket?id=' + id).subscribe((basket: IBasket) => {
@@ -67,10 +75,14 @@ export class BasketService {
 
   private deleteBasket(basket: IBasket) {
     return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe(() => {
-      this.basketSource.next(null);
-      this.basketTotalSource.next(null);
-      localStorage.removeItem('basket_id');
+      this.deleteLocalBasket();
     })
+  }
+
+  deleteLocalBasket() {
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
   }
 
   private addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
@@ -104,10 +116,9 @@ export class BasketService {
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
     if (!basket) return;
-    const shipping = 0;
     const subtotal = basket.items.reduce((sum, current) => (current.price * current.quantity) + sum, 0);
-    const total = subtotal + shipping;
-    this.basketTotalSource.next({ shipping, subtotal, total });
+    const total = subtotal + this.shipping;
+    this.basketTotalSource.next({ shipping: this.shipping, subtotal, total });
   }
 
   private isProduct(item: IProduct | IBasketItem): item is IProduct {

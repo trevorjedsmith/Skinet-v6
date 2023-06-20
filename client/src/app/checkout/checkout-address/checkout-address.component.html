@@ -1,0 +1,96 @@
+<div class="mt-4" *ngIf="checkoutForm" [formGroup]="checkoutForm">
+    <div class="d-flex jusitify-content-between align-items-center">
+        <button [disabled]="!checkoutForm.get('addressForm')?.valid || !checkoutForm.get('addressForm')?.dirty" 
+        (click)="saveUserAddress()" class="btn btn-outline-success mb-3">
+            Save as default address
+        </button>
+    </div>
+    <div class="row" formGroupName="addressForm">
+        <div class="form-group col-6">
+            <div class="form-floating mb-3">
+                <input formControlName="firstName" type="text" class="form-control" id="firstName"
+                    [class.is-invalid]="checkoutForm.get('addressForm.firstName')?.touched && checkoutForm.get('addressForm.firstName')?.invalid"
+                    placeholder="First name">
+                <label for="floatingInput">First name</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('addressForm.firstName')?.errors && checkoutForm.get('addressForm.firstName')?.errors['required'] === true">
+                    First Name is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-6">
+            <div class="form-floating mb-3">
+                <input formControlName="lastName" type="text" class="form-control" id="lastName"
+                    [class.is-invalid]="checkoutForm.get('addressForm.lastName')?.touched && checkoutForm.get('addressForm.lastName')?.invalid"
+                    placeholder="Last name">
+                <label for="floatingInput">Last name</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('addressForm.lastName')?.errors && checkoutForm.get('addressForm.lastName')?.errors['required'] === true">
+                    Last Name is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-6">
+            <div class="form-floating mb-3">
+                <input formControlName="street" type="text" class="form-control" id="street"
+                    [class.is-invalid]="checkoutForm.get('addressForm.street')?.touched && checkoutForm.get('addressForm.street')?.invalid"
+                    placeholder="Street">
+                <label for="floatingInput">Street</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('addressForm.street')?.errors && checkoutForm.get('addressForm.street')?.errors['required'] === true">
+                    Street is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-6">
+            <div class="form-floating mb-3">
+                <input formControlName="city" type="text" class="form-control" id="city"
+                    [class.is-invalid]="checkoutForm.get('addressForm.city')?.touched && checkoutForm.get('addressForm.city')?.invalid"
+                    placeholder="City">
+                <label for="floatingInput">City</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('addressForm.city')?.errors && checkoutForm.get('addressForm.city')?.errors['required'] === true">
+                    City is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-6">
+            <div class="form-floating mb-3">
+                <input formControlName="state" type="text" class="form-control" id="state"
+                    [class.is-invalid]="checkoutForm.get('addressForm.state')?.touched && checkoutForm.get('addressForm.state')?.invalid"
+                    placeholder="State">
+                <label for="floatingInput">State</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('addressForm.state')?.errors && checkoutForm.get('addressForm.state')?.errors['required'] === true">
+                    State is required
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-6">
+            <div class="form-floating mb-3">
+                <input formControlName="zipCode" type="text" class="form-control" id="zipCode"
+                    [class.is-invalid]="checkoutForm.get('addressForm.zipCode')?.touched && checkoutForm.get('addressForm.zipCode')?.invalid"
+                    placeholder="State">
+                <label for="floatingInput">Zip Code</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('addressForm.zipCode')?.errors && checkoutForm.get('addressForm.zipCode')?.errors['required'] === true">
+                    ZipCode is required
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between flex-row mb-5">
+    <button class="btn btn-outline-primary" routerLink="/basket">
+        <i class="fa fa-angle-left"></i> Back to basket
+    </button>
+    <button class="btn btn-primary" cdkStepperNext>
+        Go to delivery <i class="fa fa-angle-right"></i>
+    </button>
+</div>

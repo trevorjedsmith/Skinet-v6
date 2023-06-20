@@ -1,0 +1,5 @@
+<div class="container mt-5">
+    <div><i class="fa fa-check-circle fa-5x text-success"></i></div>
+    <h2>Thank you your order is confirmed. <span *ngIf="order">To track this order please use your order Id: {{ order.id }}</span></h2>
+    <button (click)="viewOrder()" class="btn btn-outline-success">View your order</button>
+</div>
