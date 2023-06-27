@@ -1,4 +1,4 @@
-<div class="mt-4" *ngIf="checkoutForm" [formGroup]="checkoutForm">
+<div class="mt-4" *ngIf="checkoutForm" [formGroup]="checkoutForm" style="min-height: 350px">
     <div class="d-flex jusitify-content-between align-items-center">
         <button [disabled]="!checkoutForm.get('addressForm')?.valid || !checkoutForm.get('addressForm')?.dirty" 
         (click)="saveUserAddress()" class="btn btn-outline-success mb-3">
@@ -90,7 +90,7 @@
     <button class="btn btn-outline-primary" routerLink="/basket">
         <i class="fa fa-angle-left"></i> Back to basket
     </button>
-    <button class="btn btn-primary" cdkStepperNext>
+    <button [disabled]="checkoutForm.get('addressForm')?.invalid" class="btn btn-primary" cdkStepperNext>
         Go to delivery <i class="fa fa-angle-right"></i>
     </button>
 </div>

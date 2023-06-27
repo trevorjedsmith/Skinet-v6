@@ -1,8 +1,49 @@
+<div class="mt-4" *ngIf="checkoutForm" [formGroup]="checkoutForm" style="min-height: 350px">
+    <div class="row">
+        <div class="form-group col-12" formGroupName="paymentForm">
+            <div class="form-floating mb-3">
+                <input formControlName="nameOnCard" type="text" class="form-control" id="nameOnCard"
+                    [class.is-invalid]="checkoutForm.get('paymentForm.nameOnCard')?.touched && checkoutForm.get('paymentForm.nameOnCard')?.invalid"
+                    placeholder="Name On Card">
+                <label for="floatingInput">Name On Card</label>
+                <div class="invalid-feedback"
+                    *ngIf="checkoutForm.get('paymentForm.nameOnCard')?.errors && checkoutForm.get('paymentForm.nameOnCard')?.errors['required'] === true">
+                    Name On Card is required
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <span class="text-danger">{{ cardErrors }}</span>
+        </div>
+        <div class="col-6">
+            <div class="form-floating">
+                <div class="form-control" #cardNumber></div>
+                <label>Card Number</label>               
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-floating">
+                <div class="form-control" #cardExpiry></div>
+                <label>Card Expiry</label>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="form-floating">
+                <div class="form-control" #cardCvc></div>
+                <label>Card CVC</label>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="d-flex justify-content-between flex-row mb-5">
     <button class="btn btn-outline-primary" cdkStepperPrevious>
         <i class="fa fa-angle-left"></i> Back to review
     </button>
-    <button class="btn btn-primary" (click)="submitOrder()">
+    <button [disabled]="loading" class="btn btn-primary" (click)="submitOrder()">
         Submit order <i class="fa fa-angle-right"></i>
+        <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
     </button>
 </div>

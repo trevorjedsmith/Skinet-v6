@@ -2,7 +2,11 @@ import * as cuid from 'cuid';
 
 export interface IBasket {
     id: string
-    items: IBasketItem[]
+    items: IBasketItem[],
+    clientSecret?: string;
+    paymentIntentId?: string;
+    deliveryMethodId?: number;
+    shippingPrice: number;
   }
   
   export interface IBasketItem {
@@ -18,6 +22,7 @@ export interface IBasket {
   export class Basket implements IBasket {
     id = cuid();
     items: IBasketItem[] = [];
+    shippingPrice = 0
   }
 
   export interface IBasketTotals {
